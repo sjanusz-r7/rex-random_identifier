@@ -22,6 +22,18 @@ require 'rex/text'
 #
 class Rex::RandomIdentifier::Generator
 
+  FORBIDDEN_KEYWORDS = %w[
+    abstract continue for new switch assert
+    default goto package synchronized boolean
+    do if private this break double implements
+    protected throw byte else import public
+    throws case enum instanceof return transient
+    catch extends int short try char final interface
+    static void class finally long strictfp volatile
+    const float native super while true false null
+  ].freeze
+  private_constant :RESERVED_KEYWORDS
+
   # Raised when a RandomIdentifierGenerator cannot create any more
   # identifiers without collisions.
   class ExhaustedSpaceError < StandardError; end
@@ -34,7 +46,7 @@ class Rex::RandomIdentifier::Generator
     # This should be pretty universal for identifier rules
     :char_set => Rex::Text::AlphaNumeric+"_",
     :first_char_set => Rex::Text::LowerAlpha,
-    :forbidden => []
+    :forbidden => FORBIDDEN_KEYWORDS
   }
 
   # @param opts [Hash] Options, see {DefaultOpts} for default values
