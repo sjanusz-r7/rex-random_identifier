@@ -32,7 +32,7 @@ class Rex::RandomIdentifier::Generator
     static void class finally long strictfp volatile
     const float native super while true false null
   ].freeze
-  private_constant :RESERVED_KEYWORDS
+  private_constant :FORBIDDEN_KEYWORDS
 
   # Raised when a RandomIdentifierGenerator cannot create any more
   # identifiers without collisions.
